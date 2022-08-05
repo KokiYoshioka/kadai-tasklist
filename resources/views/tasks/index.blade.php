@@ -11,6 +11,7 @@
             <thead>
                 <tr>
                     <th>id</th>
+                    <th>ステータス</th>
                     <th>タスク</th>
                 </tr>
             </thead>
@@ -19,7 +20,7 @@
                 <tr>
                     {{-- タスク詳細ページへのリンク --}}
                     <td>{!! link_to_route('tasks.show', $task->id, ['task' => $task->id]) !!}</td>
-                    <td>{{ $task->title }}</td>
+                    <td>{{ $task->status }}</td>
                     <td>{{ $task->content }}</td>
                 </tr>
                 @endforeach
@@ -27,7 +28,10 @@
         </table>
     @endif
     
-     {{-- タスク作成ページへのリンク --}}
+    {{-- ページネーションのリンク --}}
+    {{ $tasks->links() }}
+    
+    {{-- タスク作成ページへのリンク --}}
     {!! link_to_route('tasks.create', '新規タスクの投稿', [], ['class' => 'btn btn-primary']) !!}
 
 
